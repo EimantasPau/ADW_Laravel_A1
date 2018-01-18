@@ -11,12 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Auth::routes();
 
 Route::get('/home', 'AppointmentController@index')->name('index');
+Route::get('/', 'AppointmentController@index');
+
+Route::post('/appointment', 'AppointmentController@store')->name('store');
 
 Route::get('/appointments/create', 'AppointmentController@create')->name('create');

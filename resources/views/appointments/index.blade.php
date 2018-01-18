@@ -13,6 +13,32 @@
                         <button class="btn btn-secondary" type="button">Go!</button>
                     </span>
                 </div>
+                @if(count($appointments) == 0)
+                    <div>You do not have any appointments at the moment.</div>
+                @else
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Patient's name</th>
+                            <th>Time</th>
+                            <th>Location</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($appointments as $appointment)
+                        <tr><td>{{$appointment->title}}</td>
+                        <td>{{$appointment->description}}</td>
+                        <td>{{$appointment->patientName}}</td>
+                        <td>{{$appointment->time}}</td>
+                        <td>{{$appointment->location}}</td>
+                            <td><i class="material-icons">mode_edit</i><i class="material-icons">delete</i></td>
+                        </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                @endif
             </div>
         </div>
     </div>
