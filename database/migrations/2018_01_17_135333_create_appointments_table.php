@@ -20,6 +20,8 @@ class CreateAppointmentsTable extends Migration
             $table->dateTime('time');
             $table->string('location');
             $table->string('patientName');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
 
         });

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Appointment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
 
 class AppointmentController extends Controller
 {
@@ -25,7 +27,16 @@ class AppointmentController extends Controller
             'location' => 'required|string',
             'patientName' => 'required|string'
         ]);
-        Appointment::create($request->all());
+
+       $appointment = new Appointment();
+       $appointment->title = $request->input('title');
+       $appointment->description = $request->input('description');
+       $appointment->time = $request->input('time');
+       $appointment->location = $request->input('location');
+       $appointment->patientName = $request->input('patientName');
+       $appointment->user_ID = Auth::ID();
+
+       $appointment->save();
         return redirect()->route('index');
     }
 }
