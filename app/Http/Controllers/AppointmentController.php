@@ -43,4 +43,23 @@ class AppointmentController extends Controller
         Appointment::destroy($id);
        return redirect()->route('index');
     }
+
+    public function edit($id){
+        $appointment = Appointment::findOrFail($id);
+        return view('appointments.edit', compact('appointment'));
+    }
+
+    public function update(Request $request, $id){
+        $appointment = Appointment::findOrFail($id);
+
+        $appointment->title = $request->input('title');
+        $appointment->description = $request->input('description');
+        $appointment->time = $request->input('time');
+        $appointment->location = $request->input('location');
+        $appointment->patientName = $request->input('patientName');
+
+        $appointment->save();
+        return redirect()->route('index');
+
+    }
 }

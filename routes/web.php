@@ -22,3 +22,7 @@ Route::post('/appointments', 'AppointmentController@store')->name('store');
 Route::get('/appointments/create', 'AppointmentController@create')->name('create');
 
 Route::delete('/appointments/{appointment}', 'AppointmentController@destroy')->name('destroy');
+
+Route::get('/appointments/{appointment}', 'AppointmentController@edit')->name('edit');
+
+Route::put('/appointments/{appointment}', 'AppointmentController@update')->name('update');
