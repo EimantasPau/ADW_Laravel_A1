@@ -38,4 +38,9 @@ class AppointmentController extends Controller
        $appointment->save();
         return redirect()->route('index');
     }
+
+    public function destroy($id){
+        Appointment::destroy($id);
+       return redirect()->route('index');
+    }
 }
