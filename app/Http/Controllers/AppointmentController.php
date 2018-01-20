@@ -18,6 +18,13 @@ class AppointmentController extends Controller
     }
 
     public function store(Request $request) {
+        $this->validate($request, [
+           'title' => 'required',
+           'description' => 'required|max:255',
+           'time' => 'required',
+            'location' => 'required|string',
+            'patientName' => 'required|string'
+        ]);
         Appointment::create($request->all());
         return redirect()->route('index');
     }
