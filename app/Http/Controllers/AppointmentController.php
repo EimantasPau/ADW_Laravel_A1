@@ -9,8 +9,16 @@ use Illuminate\Support\Facades\Auth;
 
 class AppointmentController extends Controller
 {
-    public function index() {
-        $appointments = Appointment::all()->where('user_id', Auth::ID());
+    public function index(Request $request) {
+        if($request->has('keyword')){
+            $keyword = $request->input('keyword');
+            $appointments = Appointment::where('title', 'LIKE', '%'. $keyword . '%')
+                ->orWhere('description', 'LIKE', '%' . $keyword . '%')
+                ->orWhere('patientName', 'LIKE', '%'. $keyword . '%')
+                ->get();
+        } else {
+            $appointments = Appointment::all()->where('user_id', Auth::ID());
+        }
         return view('appointments.index', compact('appointments'));
     }
 
@@ -52,6 +60,14 @@ class AppointmentController extends Controller
     public function update(Request $request, $id){
         $appointment = Appointment::findOrFail($id);
 
+        $this->validate($request, [
+            'title' => 'required',
+            'description' => 'required|max:255',
+            'time' => 'required',
+            'location' => 'required|string',
+            'patientName' => 'required|string'
+        ]);
+
         $appointment->title = $request->input('title');
         $appointment->description = $request->input('description');
         $appointment->time = $request->input('time');
@@ -60,6 +76,5 @@ class AppointmentController extends Controller
 
         $appointment->save();
         return redirect()->route('index');
-
     }
 }

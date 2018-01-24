@@ -19,7 +19,7 @@
 <body>
     <div id="app" class="container">
         <nav class="navbar navbar-light">
-            <a class="navbar-brand" href="#">Keep up with your appointments</a>
+            <a class="navbar-brand" href="/">Keep up with your appointments</a>
                 <ul class="navbar-nav">
                     @if (Route::has('login'))
                             @auth

@@ -14,15 +14,21 @@
 
 Auth::routes();
 
-Route::get('/home', 'AppointmentController@index')->name('index');
-Route::get('/', 'AppointmentController@index');
 
-Route::post('/appointments', 'AppointmentController@store')->name('store');
+Route::get('/', 'AppointmentController@index')->middleware('auth');
 
-Route::get('/appointments/create', 'AppointmentController@create')->name('create');
 
-Route::delete('/appointments/{appointment}', 'AppointmentController@destroy')->name('destroy');
+Route::get('/appointments', 'AppointmentController@index')->name('index')->middleware('auth');
 
-Route::get('/appointments/{appointment}', 'AppointmentController@edit')->name('edit');
+Route::post('/appointments', 'AppointmentController@store')->name('store')->middleware('auth');
 
-Route::put('/appointments/{appointment}', 'AppointmentController@update')->name('update');
+Route::get('/appointments/create', 'AppointmentController@create')->name('create')->middleware('auth');
+
+Route::delete('/appointments/{appointment}', 'AppointmentController@destroy')->name('destroy')->middleware('auth');
+
+Route::get('/appointments/{appointment}', 'AppointmentController@edit')->name('edit')->middleware('auth');
+
+Route::put('/appointments/{appointment}', 'AppointmentController@update')->name('update')->middleware('auth');
+//
+//Route::get('/appointments/search', 'AppointmentController@search')->name('search');
+

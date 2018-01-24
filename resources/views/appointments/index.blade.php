@@ -7,12 +7,14 @@
             <div class="card">
                 <h5>My appointments</h5>
                 <a class="btn btn-primary mb-3" href="{{route('create')}}">Create new appointment</a>
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for..." aria-label="Search for...">
-                    <span class="input-group-btn">
-                        <button class="btn btn-secondary" type="button">Go!</button>
-                    </span>
-                </div>
+                <form action="{{route('index')}}">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search for..." aria-label="Search for..." name="keyword">
+                        <span class="input-group-btn">
+                            <button class="btn btn-secondary" type="submit">Go!</button>
+                        </span>
+                    </div>
+                </form>
                 @if(count($appointments) == 0)
                     <div>You do not have any appointments at the moment.</div>
                 @else
@@ -34,8 +36,8 @@
                         <td>{{$appointment->time}}</td>
                         <td>{{$appointment->location}}</td>
                             <td><a href="{{route('edit', ['id'=>$appointment->id])}}"><i class="material-icons">mode_edit</i></a>
-                                <a onclick="event.preventDefault(); document.getElementById('destroy-form').submit();"><i class="material-icons">delete</i></a>
                             </td>
+                            <td><a href="#" onclick="event.preventDefault(); document.getElementById('destroy-form').submit();"><i class="material-icons">delete</i></a></td>
                             <form id="destroy-form" action="{{route('destroy', ['id' => $appointment->id]) }}" method="POST" style="display: none;">
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
