@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Appointment;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class AppointmentController extends Controller
 {
@@ -44,11 +46,13 @@ class AppointmentController extends Controller
        $appointment->user_ID = Auth::ID();
 
        $appointment->save();
-        return redirect()->route('index');
+       Session::flash('successMessage', "You have successfully created an appointment.");
+       return redirect()->route('index');
     }
 
     public function destroy($id){
         Appointment::destroy($id);
+        Session::flash('successMessage', "Appointment deleted.");
        return redirect()->route('index');
     }
 
@@ -75,6 +79,7 @@ class AppointmentController extends Controller
         $appointment->patientName = $request->input('patientName');
 
         $appointment->save();
+        Session::flash('successMessage', "You have successfully updated the appointment.");
         return redirect()->route('index');
     }
 }

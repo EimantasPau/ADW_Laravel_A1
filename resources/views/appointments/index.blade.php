@@ -15,8 +15,13 @@
                         </span>
                     </div>
                 </form>
+                @if($message = session('successMessage'))
+                <div class="alert alert-success" role="alert">
+                    {{$message}}
+                </div>
+                @endif
                 @if(count($appointments) == 0)
-                    <div>You do not have any appointments at the moment.</div>
+                    <div>No appointments found.</div>
                 @else
                     <table class="table">
                         <thead>
