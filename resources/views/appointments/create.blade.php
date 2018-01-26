@@ -16,7 +16,7 @@
                         </div>
                         @endif
                     <div class="form-group">
-                        <textarea class="form-control" id="description" placeholder="Description" name="description" value="{{old('title')}}"></textarea>
+                        <textarea class="form-control" id="description" placeholder="Description" name="description" value="{{old('description')}}"></textarea>
                     </div>
                     @if($errors->has('description'))
                         <div class="alert alert-danger" role="alert">
@@ -24,7 +24,7 @@
                         </div>
                     @endif
                     <div class="form-group">
-                        <input id="picker" type="text" class="form-control" placeholder="Date and time" name="time" value="{{old('title')}}">
+                        <input id="picker" type="text" class="form-control" placeholder="Date and time" name="time" value="{{old('time')}}">
                     </div>
                     @if($errors->has('time'))
                         <div class="alert alert-danger" role="alert">
@@ -32,7 +32,7 @@
                         </div>
                     @endif
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Location" name="location" value="{{old('title')}}">
+                        <input type="text" class="form-control" placeholder="Location" name="location" value="{{old('location')}}">
                     </div>
                     @if($errors->has('location'))
                         <div class="alert alert-danger" role="alert">
@@ -40,7 +40,7 @@
                         </div>
                     @endif
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Patient's name" name="patientName" value="{{old('title')}}">
+                        <input type="text" class="form-control" placeholder="Patient's name" name="patientName" value="{{old('patientName')}}">
                     </div>
                     @if($errors->has('patientName'))
                         <div class="alert alert-danger" role="alert">
