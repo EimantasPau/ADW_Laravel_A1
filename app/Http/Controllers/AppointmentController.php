@@ -82,4 +82,9 @@ class AppointmentController extends Controller
         Session::flash('successMessage', "You have successfully updated the appointment.");
         return redirect()->route('index');
     }
+
+    public function show(Request $request, $id) {
+        $appointment = Appointment::findOrFail($id);
+        return view('appointments.show', compact('appointment'));
+    }
 }

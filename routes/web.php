@@ -27,9 +27,11 @@ Route::get('/appointments/create', 'AppointmentController@create')->name('create
 
 Route::delete('/appointments/{appointment}', 'AppointmentController@destroy')->name('destroy')->middleware('auth');
 
-Route::get('/appointments/{appointment}', 'AppointmentController@edit')->name('edit')->middleware('auth');
+Route::get('/appointments/{appointment}/edit', 'AppointmentController@edit')->name('edit')->middleware('auth');
 
 Route::put('/appointments/{appointment}', 'AppointmentController@update')->name('update')->middleware('auth');
+
+Route::get('/appointments/{appointment}', 'AppointmentController@show')->name('show')->middleware('auth');
 //
 //Route::get('/appointments/search', 'AppointmentController@search')->name('search');
 

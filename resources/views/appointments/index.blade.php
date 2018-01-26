@@ -40,9 +40,9 @@
                         <td>{{$appointment->patientName}}</td>
                         <td>{{$appointment->time}}</td>
                         <td>{{$appointment->location}}</td>
-                            <td><a href="{{route('edit', ['id'=>$appointment->id])}}"><i class="material-icons">mode_edit</i></a>
-                            </td>
-                            <td><a href="#" onclick="event.preventDefault(); document.getElementById('destroy-form').submit();"><i class="material-icons">delete</i></a></td>
+                        <td><a href="{{route('show', ['id'=> $appointment->id])}}"><i class="material-icons">description</i></a></td>
+                        <td><a href="{{route('edit', ['id'=>$appointment->id])}}"><i class="material-icons">mode_edit</i></a></td>
+                        <td><a href="#" onclick="event.preventDefault(); document.getElementById('destroy-form').submit();"><i class="material-icons">delete</i></a></td>
                             <form id="destroy-form" action="{{route('destroy', ['id' => $appointment->id]) }}" method="POST" style="display: none;">
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
